@@ -1,6 +1,6 @@
-package br.com.mailling.application;
+package br.com.mailling.ui.controller;
 
-import br.com.mailling.application.dto.AddressDTO;
+import br.com.mailling.ui.dto.AddressDTO;
 import br.com.mailling.application.service.ZipCodeApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

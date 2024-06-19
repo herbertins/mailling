@@ -1,6 +1,6 @@
 package br.com.mailling.infra.api;
 
-import br.com.mailling.application.dto.AddressDTO;
+import br.com.mailling.ui.dto.AddressDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

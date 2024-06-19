@@ -7,10 +7,12 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum CondoModel {
 
-    VERTICAL("V"),
-    HORIZONTAL("H");
+    VERTICAL("V", "Vertical"),
+    HORIZONTAL("H", "Horizontal");
 
     private final String code;
+
+    private final String description;
 
     public static CondoModel fromCode(String value) {
         for (CondoModel obj : CondoModel.values()) {

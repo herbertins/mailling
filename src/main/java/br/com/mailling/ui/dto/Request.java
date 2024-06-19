@@ -1,4 +1,4 @@
-package br.com.mailling.application.dto;
+package br.com.mailling.ui.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -37,8 +37,5 @@ public class Request {
 
     @JsonProperty("modelo")
     private String model;
-
-    @JsonProperty("endereco")
-    private AddressDTO address;
 
 }

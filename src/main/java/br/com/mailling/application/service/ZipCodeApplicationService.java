@@ -1,6 +1,6 @@
 package br.com.mailling.application.service;
 
-import br.com.mailling.application.dto.AddressDTO;
+import br.com.mailling.ui.dto.AddressDTO;
 import br.com.mailling.infra.api.ExternalZipCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

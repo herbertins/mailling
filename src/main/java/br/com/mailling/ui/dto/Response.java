@@ -1,16 +1,12 @@
-package br.com.mailling.application.dto;
+package br.com.mailling.ui.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @Getter
-@Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class Response {
 
@@ -33,11 +29,27 @@ public class Response {
     private Integer unitQuantity;
 
     @JsonProperty("tipo")
-    private String type;
+    private CondoType type;
 
-    @JsonProperty("Modelo")
-    private String model;
+    @JsonProperty("modelo")
+    private CondoModel model;
 
-    private AddressDTO addres;
+    @Getter
+    @AllArgsConstructor
+    public static class CondoType {
+        @JsonProperty("codigo")
+        private String code;
+        @JsonProperty("descricao")
+        private String description;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public static class CondoModel {
+        @JsonProperty("codigo")
+        private String code;
+        @JsonProperty("descricao")
+        private String description;
+    }
 
 }

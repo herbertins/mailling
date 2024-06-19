@@ -1,51 +1,142 @@
 package br.com.mailling.domain.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.regex.Pattern;
 
-@Entity
-@Table(name = "condominiums")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Condo {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private static final String EMAIL_REGEX = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@" +
+            "(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "latitude")
     private BigDecimal latitude;
 
-    @Column(name = "longitude")
     private BigDecimal longitude;
 
-    @Column(name = "unit_quantity")
     private Integer unitQuantity;
 
-    @Column(name = "type", columnDefinition = "varchar(20)")
     private CondoType type;
 
-    @Column(name = "model", columnDefinition = "varchar(20)")
     private CondoModel model;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
+    public Condo(Long id, String name, String description, String email, BigDecimal latitude, BigDecimal longitude, Integer unitQuantity, CondoType type, CondoModel model, Address address) {
+
+        if (!isValidEmail(email)) {
+            throw new IllegalArgumentException("Invalid email address");
+        }
+
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.email = email;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.unitQuantity = unitQuantity;
+        this.type = type;
+        this.model = model;
+        this.address = address;
+    }
+
+    private boolean isValidEmail(String email) {
+        if (email == null) {
+            return false;
+        }
+        return EMAIL_PATTERN.matcher(email).matches();
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        if (!isValidEmail(email)) {
+            throw new IllegalArgumentException("Invalid email address");
+        }
+    }
+
+    public BigDecimal getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(BigDecimal latitude) {
+        this.latitude = latitude;
+    }
+
+    public BigDecimal getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(BigDecimal longitude) {
+        this.longitude = longitude;
+    }
+
+    public Integer getUnitQuantity() {
+        return unitQuantity;
+    }
+
+    public void setUnitQuantity(Integer unitQuantity) {
+        this.unitQuantity = unitQuantity;
+    }
+
+    public CondoType getType() {
+        return type;
+    }
+
+    public void setType(CondoType type) {
+        this.type = type;
+    }
+
+    public CondoModel getModel() {
+        return model;
+    }
+
+    public void setModel(CondoModel model) {
+        this.model = model;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

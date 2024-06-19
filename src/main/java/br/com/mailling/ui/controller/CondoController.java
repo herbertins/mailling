@@ -1,7 +1,7 @@
-package br.com.mailling.application;
+package br.com.mailling.ui.controller;
 
-import br.com.mailling.application.dto.Request;
-import br.com.mailling.application.dto.Response;
+import br.com.mailling.ui.dto.Request;
+import br.com.mailling.ui.dto.Response;
 import br.com.mailling.application.service.CondoApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

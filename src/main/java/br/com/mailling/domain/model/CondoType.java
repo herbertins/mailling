@@ -7,10 +7,12 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum CondoType {
 
-    RESIDENCIAL("R"),
-    COMMERCIAL("C");
+    RESIDENCIAL("R", "Residencial"),
+    COMMERCIAL("C", "Comercial");
 
     private final String code;
+
+    private final String description;
 
     public static CondoType fromCode(String value) {
         for (CondoType obj : CondoType.values()) {

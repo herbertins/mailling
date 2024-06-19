@@ -1,37 +1,39 @@
 package br.com.mailling.domain.service;
 
+import br.com.mailling.domain.model.Address;
 import br.com.mailling.domain.model.Condo;
 import br.com.mailling.domain.repository.CondoRepository;
-import br.com.mailling.infra.mapper.CondoMapper;
-import br.com.mailling.infra.persistence.entity.CondoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Service
 public class CondoService {
 
+    @Autowired
     private final CondoRepository repository;
-    private final CondoMapper mapper;
 
     @Autowired
-    public CondoService(CondoRepository repository, CondoMapper mapper) {
+    public CondoService(CondoRepository repository) {
         this.repository = repository;
-        this.mapper = mapper;
     }
 
-    public void create(final Condo condo) {
-        CondoEntity entity = mapper.toEntity(condo);
-        repository.save(entity);
+    public void create(final Condo domain) {
+        repository.save(domain);
+    }
+
+    public Condo findById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Condo not found"));
+    }
+
+    public Condo findByIdWithAddress(Long id) {
+        return repository.findByIdWithAddress(id).orElse(null);
     }
 
     public List<Condo> getCondos() {
-        Iterable<CondoEntity> iterable = repository.findAll();
-        return mapper.toDomain(StreamSupport.stream(iterable.spliterator(), false)
-                .collect(Collectors.toList()));
+        List<Condo> condoList = repository.findAll();
+        return condoList;
     }
 
 }

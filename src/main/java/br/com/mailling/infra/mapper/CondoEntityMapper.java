@@ -8,13 +8,16 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Mapper
-public interface CondoMapper {
 
-    CondoMapper INSTANCE = Mappers.getMapper(CondoMapper.class);
+@Component
+@Mapper(componentModel = "spring")
+public interface CondoEntityMapper {
+
+    CondoEntityMapper INSTANCE = Mappers.getMapper(CondoEntityMapper.class);
 
     @Mapping(source = "model", target = "model", qualifiedByName = "condoModelToCode")
     @Mapping(source = "type", target = "type", qualifiedByName = "condoTypeToCode")
@@ -25,7 +28,6 @@ public interface CondoMapper {
     Condo toDomain(final CondoEntity entity);
 
     List<Condo> toDomain(final List<CondoEntity> entity);
-
 
     @Named("condoModelToCode")
     static String condoModelToCode(CondoModel obj) {

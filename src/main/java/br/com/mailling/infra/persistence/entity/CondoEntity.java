@@ -1,8 +1,5 @@
 package br.com.mailling.infra.persistence.entity;
 
-import br.com.mailling.domain.model.Address;
-import br.com.mailling.domain.model.CondoModel;
-import br.com.mailling.domain.model.CondoType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.regex.Pattern;
 
 @Entity
 @Getter
@@ -18,6 +14,10 @@ import java.util.regex.Pattern;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tbl_condo")
+@NamedEntityGraph(
+        name = "CondoEntity.withAddress",
+        attributeNodes = @NamedAttributeNode("address")
+)
 public class CondoEntity {
 
     @Id
@@ -48,9 +48,9 @@ public class CondoEntity {
     @Column(name = "model", columnDefinition = "varchar(1)")
     private String model;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "address_id", referencedColumnName = "id")
-//    private Address address;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private AddressEntity address;
 
 
 }

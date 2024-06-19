@@ -1,7 +1,19 @@
 package br.com.mailling.domain.repository;
 
-import br.com.mailling.infra.persistence.entity.CondoEntity;
-import org.springframework.data.repository.CrudRepository;
+import br.com.mailling.domain.model.Address;
+import br.com.mailling.domain.model.Condo;
 
-public interface CondoRepository extends CrudRepository<CondoEntity, Long> {
+import java.util.List;
+import java.util.Optional;
+
+public interface CondoRepository {
+    Optional<Condo> findById(Long id);
+
+    Optional<Address> findAddressById(Long id);
+
+    Optional<Condo> findByIdWithAddress(Long id);
+
+    List<Condo> findAll();
+
+    void save(Condo condo);
 }

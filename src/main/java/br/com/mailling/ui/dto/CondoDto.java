@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 
 @Getter
 @AllArgsConstructor
-public class Response {
+public class CondoDto {
 
     @JsonProperty("nome")
     private String name;
@@ -33,6 +33,9 @@ public class Response {
 
     @JsonProperty("modelo")
     private CondoModel model;
+
+    @JsonProperty("endereco")
+    private AddressDTO address;
 
     @Getter
     @AllArgsConstructor

@@ -1,15 +1,8 @@
 package br.com.mailling.domain.model;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "Address")
 public class Address {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String street;
     private String neighborhood;
     private String city;

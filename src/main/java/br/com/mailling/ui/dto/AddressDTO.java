@@ -25,5 +25,4 @@ public class AddressDTO {
     @JsonProperty("cep")
     private String zipCode;
 
-
 }

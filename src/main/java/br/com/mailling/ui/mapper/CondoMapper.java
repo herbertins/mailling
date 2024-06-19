@@ -3,8 +3,8 @@ package br.com.mailling.ui.mapper;
 import br.com.mailling.domain.model.Condo;
 import br.com.mailling.domain.model.CondoModel;
 import br.com.mailling.domain.model.CondoType;
+import br.com.mailling.ui.dto.CondoDto;
 import br.com.mailling.ui.dto.Request;
-import br.com.mailling.ui.dto.Response;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -12,7 +12,7 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CondoMapper {
 
     CondoMapper INSTANCE = Mappers.getMapper(CondoMapper.class);
@@ -25,9 +25,9 @@ public interface CondoMapper {
     @Mapping(source = "type.code", target = "type.code")
     @Mapping(source = "model.description", target = "model.description")
     @Mapping(source = "type.description", target = "type.description")
-    Response toDto(final Condo entity);
+    CondoDto toDto(final Condo condo);
 
-    List<Response> toDto(final List<Condo> entity);
+    List<CondoDto> toDto(final List<Condo> model);
 
     @Named("codeToCondoModel")
     static CondoModel codeToCondoModel(String value) {

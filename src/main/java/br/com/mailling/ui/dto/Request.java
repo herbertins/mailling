@@ -38,4 +38,7 @@ public class Request {
     @JsonProperty("modelo")
     private String model;
 
+    @JsonProperty("endereco")
+    private AddressDTO address;
+
 }

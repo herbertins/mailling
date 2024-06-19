@@ -1,7 +1,5 @@
 package br.com.mailling.domain.model;
 
-import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 import java.util.regex.Pattern;
 
